@@ -5,336 +5,328 @@ Ambrosia Family Restro &amp; Bar official website
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ambrosia Family Restro & Bar</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ambrosia | Family Restro Bar</title>
 <style>
 :root {
-  --red: #9d271b;
-  --gold: #c49a55;
-  --cream: #fffaf1;
-  --dark: #27231f;
+  --green:#073d2b;
+  --gold:#c79a3b;
+  --cream:#fff9e9;
+  --ink:#17231c;
+  --muted:#716e63;
 }
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background: var(--cream);
-  color: var(--dark);
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--ink);font-family:Georgia,serif}
+button,input{font:inherit}
+button{cursor:pointer}
+header{
+  background:var(--green);color:white;padding:18px 5%;
+  display:flex;justify-content:space-between;align-items:center;
+  gap:20px;border-bottom:3px solid var(--gold);flex-wrap:wrap
 }
-header {
-  background: var(--dark);
-  color: white;
-  padding: 22px 5%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  flex-wrap: wrap;
-  border-bottom: 4px solid var(--gold);
+.brand{font-size:28px;color:#f7e4ad;font-weight:bold}
+.brand small{display:block;font:11px Arial;letter-spacing:3px;color:white;margin-top:5px}
+nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+nav a{color:white;text-decoration:none;font:14px Arial}
+nav a:hover{color:#f7d27c}
+.hero{text-align:center;padding:40px 15px;background:#fffdf5;border-bottom:1px solid #e4d4ad}
+.hero h1{font-size:clamp(35px,5vw,55px);letter-spacing:5px;color:var(--green);margin:10px}
+.hero p{font:12px Arial;letter-spacing:4px;color:var(--green)}
+main{max-width:1250px;margin:auto;padding:30px 24px 55px}
+h2{font-size:30px;color:var(--green);margin:5px 0 20px}
+.kicker{font:11px Arial;letter-spacing:3px;color:#96702a;margin-bottom:8px}
+.category-tabs,.sub-tabs{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+.tab{border:1px solid var(--gold);background:transparent;color:var(--green);border-radius:25px;padding:10px 20px;font-weight:bold}
+.tab.active,.tab:hover{background:var(--green);color:white}
+.sub-tabs .tab{font-size:13px;padding:8px 15px}
+.menu-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px}
+.food-card{background:white;border:1px solid #e4d4ad;border-radius:10px;overflow:hidden;box-shadow:0 3px 10px #4b36120c}
+.food-card img{display:block;width:100%;height:205px;object-fit:cover;background:#eee4c9}
+.food-info{padding:15px}
+.food-top{display:flex;justify-content:space-between;gap:10px}
+.food-top h3{font-size:18px;margin:0}
+.price{color:#986718;font-weight:bold;white-space:nowrap}
+.food-info p{font:13px/1.5 Arial;color:var(--muted);min-height:35px}
+.card-bottom{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.badge{font:10px Arial;color:var(--green);border:1px solid #c9d8c9;border-radius:20px;padding:5px 8px}
+.add,.checkout{background:var(--green);color:white;border:0;border-radius:5px;padding:10px 14px;font-weight:bold}
+.add:hover,.checkout:hover{background:#0b5038}
+.cart-section{margin-top:45px}
+.cart-box,.info-box{background:white;border:1px solid #e4d4ad;border-radius:10px;padding:20px}
+.cart-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:15px;padding:14px 0;border-bottom:1px solid #eee3c9}
+.cart-row small{display:block;color:var(--muted);font:12px Arial;margin-top:5px}
+.qty{display:flex;align-items:center;gap:9px}
+.qty button{width:30px;height:30px;border:1px solid #e4d4ad;background:#fff8e7;border-radius:5px}
+.remove{border:0;background:transparent;color:#9c4b36}
+.cart-total{display:flex;justify-content:space-between;font-size:20px;padding:20px 0}
+.fields{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.fields label{font:12px Arial;color:var(--muted)}
+input{width:100%;padding:12px;margin:7px 0 14px;border:1px solid #e4d4ad;border-radius:5px}
+.checkout{width:100%;padding:14px}
+.note{font:12px/1.5 Arial;color:var(--muted)}
+.details{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;margin-top:45px}
+.info-box h3{color:var(--green)}
+.info-box p{font:14px/1.6 Arial;color:var(--muted)}
+.info-box a{color:#986718}
+footer{background:var(--green);color:#eee3c9;text-align:center;padding:24px;font:12px Arial}
+.empty{grid-column:1/-1;padding:30px;text-align:center;color:var(--muted)}
+@media(max-width:800px){
+  .menu-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .details{grid-template-columns:1fr}
+  header{align-items:flex-start;flex-direction:column}
 }
-header h1 {
-  margin: 0;
-  color: #f0cf91;
-  font-family: Georgia, serif;
-}
-header p { margin: 6px 0 0; }
-header a, .whatsapp {
-  color: white;
-  background: #168b50;
-  padding: 12px 18px;
-  border-radius: 7px;
-  text-decoration: none;
-  font-weight: bold;
-}
-main { max-width: 1300px; margin: auto; padding: 24px; }
-h2 { color: var(--red); font-family: Georgia, serif; }
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 18px 0;
-}
-.filters button, .subfilters button {
-  border: 1px solid #d8c5a5;
-  background: white;
-  border-radius: 22px;
-  padding: 10px 16px;
-  cursor: pointer;
-  font-weight: 600;
-}
-.filters button.active, .subfilters button.active {
-  background: var(--red);
-  color: white;
-  border-color: var(--red);
-}
-.subfilters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
-.menu-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 20px;
-}
-.food-card {
-  background: white;
-  border: 1px solid #eadfcd;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 3px 12px #0000000b;
-}
-.food-picture {
-  height: 145px;
-  background: linear-gradient(135deg, #eee0c8, #d8c09a);
-  display: grid;
-  place-items: center;
-  font-size: 45px;
-}
-.food-info { padding: 15px; }
-.food-info h3 { margin: 0 0 8px; font-size: 17px; }
-.food-meta { color: #71675c; font-size: 13px; }
-.price { color: var(--red); font-weight: bold; font-size: 19px; }
-.add-btn {
-  border: none;
-  border-radius: 7px;
-  padding: 10px 14px;
-  background: var(--red);
-  color: white;
-  cursor: pointer;
-  font-weight: bold;
-}
-.card-bottom { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:14px; }
-#cart {
-  background: white;
-  border: 1px solid #e2d4bd;
-  border-radius: 12px;
-  margin-top: 38px;
-  padding: 22px;
-}
-.cart-row {
-  display:flex; justify-content:space-between; align-items:center;
-  gap:12px; padding:12px 0; border-bottom:1px solid #eee;
-}
-.qty { display:flex; align-items:center; gap:10px; }
-.qty button { padding:5px 10px; cursor:pointer; }
-.cart-total { font-size:22px; font-weight:bold; color:var(--red); margin:20px 0; }
-.whatsapp { display:inline-block; border:0; cursor:pointer; font-size:16px; }
-.empty { color:#777; padding:12px 0; }
-footer { text-align:center; background:var(--dark); color:white; padding:24px; margin-top:35px; }
-
-@media (max-width: 750px) {
-  main { padding: 16px; }
-  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; }
-  .food-picture { height:110px; }
-  .food-info { padding:11px; }
-  .food-info h3 { font-size:15px; }
-  .card-bottom { align-items:flex-start; flex-direction:column; }
-}
-@media (max-width: 430px) {
-  .menu-grid { grid-template-columns: 1fr; }
-  header { padding:18px; }
+@media(max-width:480px){
+  main{padding:24px 12px}
+  .menu-grid{gap:10px}
+  .food-card img{height:125px}
+  .food-info{padding:10px}
+  .food-top{flex-direction:column;gap:6px}
+  .food-top h3{font-size:15px}
+  .food-info p{font-size:12px;min-height:48px}
+  .add{font-size:12px;padding:8px}
+  .badge{font-size:9px}
+  .fields{grid-template-columns:1fr}
+  .cart-row{gap:8px;grid-template-columns:1fr auto}
+  .remove{grid-column:1/-1;text-align:left}
 }
 </style>
 </head>
 <body>
+
 <header>
-  <div>
-    <h1>AMBROSIA</h1>
-    <p>Family Restro & Bar · Good Food, Great Moments</p>
+  <div class="brand">♛ Ambrosia
+    <small>FAMILY RESTRO BAR</small>
   </div>
-  <a href="https://wa.me/916387097732" target="_blank">WhatsApp Orders</a>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#contact">Contact</a>
+    <a href="#cart">Cart (<span id="cartCount">0</span>)</a>
+  </nav>
 </header>
 
+<section class="hero" id="home">
+  <div style="color:#c79a3b;letter-spacing:8px">— ❧ ✦ ❧ —</div>
+  <h1>OUR MENU</h1>
+  <p>GOOD FOOD · GREAT MOMENTS</p>
+</section>
+
 <main>
-  <h2>Our Menu</h2>
-  <p>Choose a category, explore the dishes, and add your favourites to your cart.</p>
+<section id="menu">
+  <div class="kicker">MADE FOR SHARING</div>
+  <h2>Explore Our Menu</h2>
+  <div class="category-tabs" id="categoryTabs"></div>
+  <p class="note" id="subLabel">Browse by menu type</p>
+  <div class="sub-tabs" id="subTabs"></div>
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
 
-  <div class="filters" id="categoryFilters"></div>
-  <div class="subfilters" id="subFilters"></div>
-  <section class="menu-grid" id="menuGrid"></section>
+<section class="cart-section" id="cart">
+  <div class="kicker">YOUR SELECTION</div>
+  <h2>Your Cart</h2>
+  <div class="cart-box">
+    <div id="cartItems">Your cart is empty. Add something delicious!</div>
+    <div class="cart-total"><strong>Total</strong><strong id="cartTotal">₹0</strong></div>
+    <div class="fields">
+      <div><label for="customerName">Your name</label>
+        <input id="customerName" placeholder="Enter your name"></div>
+      <div><label for="customerAddress">Delivery address / pickup</label>
+        <input id="customerAddress" placeholder="Address or write Pickup"></div>
+    </div>
+    <button class="checkout" onclick="sendWhatsAppOrder()">ORDER ON WHATSAPP</button>
+    <p class="note">WhatsApp will open with your order. The restaurant must confirm your order.</p>
+  </div>
+</section>
 
-  <section id="cart">
-    <h2>Your Cart</h2>
-    <div id="cartItems"><p class="empty">Your cart is empty. Add a dish to get started.</p></div>
-    <div class="cart-total" id="cartTotal">Total: ₹0</div>
-    <button class="whatsapp" onclick="sendOrder()">Order on WhatsApp</button>
-  </section>
+<section class="details" id="contact">
+  <div class="info-box">
+    <h3>About Ambrosia</h3>
+    <p>Good food, warm hospitality and memorable moments.</p>
+  </div>
+  <div class="info-box">
+    <h3>Our Location</h3>
+    <p id="addressText">Update the restaurant address in the code.</p>
+    <a id="mapLink" href="https://maps.google.com/" target="_blank">Open Google Maps</a>
+  </div>
+  <div class="info-box">
+    <h3>Contact & Hours</h3>
+    <p>WhatsApp: <span id="phoneText"></span></p>
+    <p id="hoursText">Update opening hours in the code.</p>
+  </div>
+</section>
 </main>
 
-<footer>
-  <p>Ambrosia Family Restro & Bar</p>
-  <p>WhatsApp: 6387097732</p>
-</footer>
+<footer>© <span id="year"></span> Ambrosia Family Restro Bar</footer>
 
 <script>
-// Menu prices are in ₹. Add or edit items here.
-// "Veg" and "Non-Veg" filters are available within applicable categories.
-const menu = [
-  // SOUP
-  {name:"Cream of Veg Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Cream of Tomato Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Cream of Palak Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Cream of Mushroom Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Cream of Chicken Soup",price:180,category:"Starters",sub:"Soup",type:"Non-Veg"},
-  {name:"Manchow Soup",price:160,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Hot & Sour Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Veg Clear Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Sweet Corn Veg Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Tom Yum Soup",price:220,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Burnt Garlic Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Lemon Coriander Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Veg Tom Kha Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Pepper Lemon Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
-  {name:"Lung Fung Soup",price:230,category:"Starters",sub:"Soup",type:"Non-Veg"},
+/* UPDATE THESE DETAILS BEFORE ACCEPTING REAL ORDERS */
+const SETTINGS = {
+  whatsapp: "91XXXXXXXXXX",
+  address: "YOUR FULL RESTAURANT ADDRESS, THANE",
+  mapUrl: "https://maps.google.com/?q=YOUR+RESTAURANT",
+  hours: "Add your opening hours"
+};
 
-  // VEG BAR BITES & CHINESE STARTERS
-  {name:"Chana Garlic Koliwada",price:210,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"Chana Garlic Fry",price:180,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"Cheese Cherry Pineapple",price:220,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"Cheese Pakoda",price:180,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"Paneer Pakoda",price:250,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"Mix Veg Pakoda",price:200,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"Onion Ring Pakoda",price:175,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"Cheese Corn Ball",price:280,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"French Fries",price:180,category:"Starters",sub:"Veg Starters",type:"Veg"},
-  {name:"Spring Roll",price:260,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Dragon Roll",price:280,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Manchurian",price:280,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Corn Crispy",price:260,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Veg Crispy",price:270,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Kung Pao",price:310,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Chilli",price:280,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Mongolian",price:330,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Hot Garlic",price:300,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Burnt Chilli",price:290,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Salt & Pepper",price:280,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Barbeque",price:290,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Hot Pan (Saute)",price:290,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Schezwan Dry",price:300,category:"Starters",sub:"Chinese Starter",type:"Veg"},
-  {name:"Andres Chilly",price:290,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+/* SAMPLE MENU: replace dishes, prices and photos with your real menu */
+const starterMenu = [
+ {id:1,name:"Paneer Tikka",category:"Veg",sub:"Starters",price:240,desc:"Grilled paneer with aromatic spices.",image:"https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=800&q=80"},
+ {id:2,name:"Veg Seekh Kebab",category:"Veg",sub:"Starters",price:190,desc:"A savoury vegetarian starter.",image:"https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=800&q=80"},
+ {id:3,name:"Crispy Corn",category:"Veg",sub:"Starters",price:180,desc:"Crispy corn with seasoning.",image:"https://images.unsplash.com/photo-1630384060421-cb20d0e0649d?auto=format&fit=crop&w=800&q=80"},
+ {id:4,name:"Veg Biryani",category:"Veg",sub:"Main Course",price:220,desc:"Fragrant rice with vegetables.",image:"https://images.unsplash.com/photo-1589302168068-964664d93dc0?auto=format&fit=crop&w=800&q=80"},
+ {id:5,name:"Paneer Butter Masala",category:"Veg",sub:"Main Course",price:280,desc:"Paneer in a rich tomato gravy.",image:"https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=800&q=80"},
+ {id:6,name:"Dal Tadka",category:"Veg",sub:"Main Course",price:190,desc:"Lentils with fragrant tempering.",image:"https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=800&q=80"},
+ {id:7,name:"Chicken Tikka",category:"Non-Veg",sub:"Starters",price:290,desc:"Spiced chicken cooked until tender.",image:"https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80"},
+ {id:8,name:"Chicken Lollipop",category:"Non-Veg",sub:"Starters",price:260,desc:"A popular crispy chicken starter.",image:"https://images.unsplash.com/photo-1626082927389-6cd097cdc6ec?auto=format&fit=crop&w=800&q=80"},
+ {id:9,name:"Fish Fry",category:"Non-Veg",sub:"Starters",price:320,desc:"Fish with a crisp spiced coating.",image:"https://images.unsplash.com/photo-1519708227418-c8fd9a32b7a2?auto=format&fit=crop&w=800&q=80"},
+ {id:10,name:"Butter Chicken",category:"Non-Veg",sub:"Main Course",price:320,desc:"Chicken in creamy tomato gravy.",image:"https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=800&q=80"},
+ {id:11,name:"Chicken Biryani",category:"Non-Veg",sub:"Main Course",price:280,desc:"Aromatic rice served with chicken.",image:"https://images.unsplash.com/photo-1563379091339-03246963d96c?auto=format&fit=crop&w=800&q=80"},
+ {id:12,name:"Mutton Curry",category:"Non-Veg",sub:"Main Course",price:380,desc:"A hearty curry with warming spices.",image:"https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=800&q=80"},
+ {id:13,name:"Fresh Lime Soda",category:"Drinks",sub:"Cold Drinks",price:90,desc:"Refreshing lime and soda.",image:"https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=800&q=80"},
+ {id:14,name:"Mango Shake",category:"Drinks",sub:"Shakes & Juices",price:150,desc:"A creamy fruity favourite.",image:"https://images.unsplash.com/photo-1572490122747-3968b75cc699?auto=format&fit=crop&w=800&q=80"},
+ {id:15,name:"Cold Coffee",category:"Drinks",sub:"Shakes & Juices",price:140,desc:"Chilled coffee with a creamy finish.",image:"https://images.unsplash.com/photo-1461023058943-07fcbe16d735?auto=format&fit=crop&w=800&q=80"}
+];
 
-  // NON-VEG STARTERS
-  {name:"Shredded Chicken Koliwada",price:310,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Chicken Pakoda",price:310,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Butter Garlic Chicken",price:380,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Rawas Fish Finger",price:530,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Basa Fish Finger",price:490,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Pomfret Fish Finger",price:null,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Butter Garlic Prawns",price:550,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Egg Pakoda",price:180,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Egg Bhurji",price:210,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
-  {name:"Chicken Tikka",price:370,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Chicken Nawabi Tikka",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Chicken Lasooni Tikka",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Chicken Malai Tikka",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Bangra Kebab",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Chicken Achari Tikka",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Pahadi Tikka",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Reshmi Kebab",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Kalimi Kebab",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Afghani Kebab",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Lazeez Kebab",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Angara Kebab",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Martha Kebab",price:410,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Arabi Tandoori (Half/Full)",price:550,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Chicken Tandoori (Half/Full)",price:540,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Chicken Seekh Kebab",price:410,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
-  {name:"Tandoori Prawns",price:550,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+let menu = starterMenu.map(item => ({...item}));
+let activeCategory = "Veg";
+let activeSub = "All";
+let cart = {};
 
-  // INDIAN VEG MAIN COURSE
-  {name:"Aloo Capsicum",price:280,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Aloo Jeera",price:280,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Aloo Methi",price:280,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Ambrosia Spl. Veg",price:300,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Ambrosia Spl. Paneer Rajwadi",price:400,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Tikka Masala",price:400,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Bhurji",price:310,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Angara",price:320,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Lababdar",price:320,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Makhanwala",price:330,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Pasanda",price:320,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Tawa Masala",price:300,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Achari Tikka",price:330,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Paneer Malai Tikka",price:350,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Mushroom Masala",price:290,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Mushroom Tikka Masala",price:300,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Veg Kolhapuri",price:275,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Veg Makhanwala",price:290,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Veg Handi",price:290,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Veg Jaipuri",price:345,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Veg Kadai",price:290,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Veg Kofta",price:280,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
-  {name:"Dal Fry",price:190,category:"Main Course",sub:"Dal",type:"Veg"},
-  {name:"Dal Tadka",price:210,category:"Main Course",sub:"Dal",type:"Veg"},
-  {name:"Dal Palak",price:200,category:"Main Course",sub:"Dal",type:"Veg"},
-  {name:"Dal Makhani",price:230,category:"Main Course",sub:"Dal",type:"Veg"},
-  {name:"Kadi Pakoda",price:250,category:"Main Course",sub:"Dal",type:"Veg"},
-  {name:"Dal Maharani",price:250,category:"Main Course",sub:"Dal",type:"Veg"},
-  {name:"Gujarati Kadi",price:250,category:"Main Course",sub:"Dal",type:"Veg"},
-  {name:"Ambrosia Special Dal Tadka",price:260,category:"Main Course",sub:"Dal",type:"Veg"},
+function money(n) {
+  return "₹" + Number(n).toLocaleString("en-IN");
+}
+function escapeHTML(value) {
+  return String(value ?? "").replace(/[&<>"']/g, c => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[c]));
+}
+function safeImage(value) {
+  try {
+    const url = new URL(value);
+    return ["https:","http:"].includes(url.protocol) ? url.href : "";
+  } catch(e) { return ""; }
+}
+function renderCategories() {
+  const categories = ["Veg","Non-Veg","Drinks","All"];
+  document.getElementById("categoryTabs").innerHTML = categories.map(c =>
+    `<button class="tab ${c===activeCategory?"active":""}" onclick="chooseCategory('${c}')">${c}</button>`
+  ).join("");
+}
+function chooseCategory(category) {
+  activeCategory = category;
+  activeSub = "All";
+  renderAll();
+}
+function renderSubcategories() {
+  const items = activeCategory === "All" ? menu :
+    menu.filter(item => item.category === activeCategory);
+  const subs = ["All", ...new Set(items.map(item => item.sub))];
+  if (!subs.includes(activeSub)) activeSub = "All";
+  document.getElementById("subLabel").textContent =
+    activeCategory === "All" ? "ALL MENU TYPES" : activeCategory.toUpperCase() + " · MENU TYPES";
+  document.getElementById("subTabs").innerHTML = subs.map(s =>
+    `<button class="tab ${s===activeSub?"active":""}" onclick="chooseSubcategory('${escapeHTML(s)}')">${escapeHTML(s)}</button>`
+  ).join("");
+}
+function chooseSubcategory(sub) {
+  activeSub = sub;
+  renderMenu();
+  renderSubcategories();
+}
+function renderMenu() {
+  const filtered = menu.filter(item =>
+    (activeCategory==="All" || item.category===activeCategory) &&
+    (activeSub==="All" || item.sub===activeSub)
+  );
+  document.getElementById("menuGrid").innerHTML = filtered.map(item => `
+    <article class="food-card">
+      <img src="${safeImage(item.image)}" alt="${escapeHTML(item.name)}" loading="lazy">
+      <div class="food-info">
+        <div class="food-top"><h3>${escapeHTML(item.name)}</h3><span class="price">${money(item.price)}</span></div>
+        <p>${escapeHTML(item.desc)}</p>
+        <div class="card-bottom">
+          <span class="badge">${escapeHTML(item.category)} · ${escapeHTML(item.sub)}</span>
+          <button class="add" onclick="addToCart(${item.id})">+ Add</button>
+        </div>
+      </div>
+    </article>
+  `).join("") || '<div class="empty">No dishes in this category yet.</div>';
+}
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  renderCart();
+}
+function changeQuantity(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+  renderCart();
+}
+function renderCart() {
+  const entries = Object.entries(cart).filter(([id,q]) => q > 0);
+  document.getElementById("cartCount").textContent =
+    entries.reduce((sum,[id,q]) => sum + q, 0);
+  document.getElementById("cartItems").innerHTML = entries.length ?
+    entries.map(([id,q]) => {
+      const item = menu.find(x => x.id === Number(id));
+      if (!item) return "";
+      return `<div class="cart-row">
+        <div><strong>${escapeHTML(item.name)}</strong><small>${money(item.price)} each</small></div>
+        <div class="qty">
+          <button onclick="changeQuantity(${item.id},-1)" aria-label="Decrease quantity">−</button>
+          <span>${q}</span>
+          <button onclick="changeQuantity(${item.id},1)" aria-label="Increase quantity">+</button>
+        </div>
+        <button class="remove" onclick="changeQuantity(${item.id},-${q})">Remove</button>
+      </div>`;
+    }).join("") : "Your cart is empty. Add something delicious!";
+  const total = entries.reduce((sum,[id,q]) => {
+    const item = menu.find(x => x.id === Number(id));
+    return sum + (item ? item.price*q : 0);
+  },0);
+  document.getElementById("cartTotal").textContent = money(total);
+}
+function sendWhatsAppOrder() {
+  const entries = Object.entries(cart).filter(([id,q]) => q > 0);
+  if (!entries.length) { alert("Please add a dish to your cart first."); return; }
+  if (!/^91\d{10}$/.test(SETTINGS.whatsapp)) {
+    alert("Please add the restaurant WhatsApp number in SETTINGS in the code.");
+    return;
+  }
+  const name = document.getElementById("customerName").value.trim();
+  const address = document.getElementById("customerAddress").value.trim();
+  if (!name || !address) {
+    alert("Please enter your name and delivery address or pickup.");
+    return;
+  }
+  const lines = entries.map(([id,q]) => {
+    const item = menu.find(x => x.id === Number(id));
+    return item ? `${item.name} x ${q} = ${money(item.price*q)}` : "";
+  }).filter(Boolean);
+  const total = entries.reduce((sum,[id,q]) => {
+    const item = menu.find(x => x.id === Number(id));
+    return sum + (item ? item.price*q : 0);
+  },0);
+  const message = `Hello Ambrosia! I would like to order:\nName: ${name}\nDelivery/Pickup: ${address}\n\n${lines.join("\n")}\n\nTotal: ${money(total)}\nPlease confirm my order.`;
+  window.open("https://wa.me/" + SETTINGS.whatsapp + "?text=" + encodeURIComponent(message), "_blank");
+}
+document.getElementById("addressText").textContent = SETTINGS.address;
+document.getElementById("phoneText").textContent = SETTINGS.whatsapp;
+document.getElementById("hoursText").textContent = SETTINGS.hours;
+document.getElementById("mapLink").href = SETTINGS.mapUrl;
+document.getElementById("year").textContent = new Date().getFullYear();
 
-  // NON-VEG MAIN COURSE
-  {name:"Murg Kadai",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Chicken Tikka Masala",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Methi Chicken",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Murg Hari Mirch",price:380,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Murg Saguwala",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Chicken Kolhapuri",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Murg Patiala",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Sukha Chicken",price:450,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Tawa Kheema",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Murg Rahra Masala",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Chicken Bhuna Masala",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Chicken Lapeta",price:430,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Murg Maratha",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Murg Handi",price:480,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Murg Makhaniwala",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Murg Mussalam (Half/Full)",price:550,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
-  {name:"Mutton Kadhai",price:530,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Mutton Hari Mirch",price:530,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Sukha Mutton",price:580,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Tawa Kheema",price:550,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Mutton Rahra Masala",price:550,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Mutton Rogan Josh",price:550,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Bhuna Mutton",price:550,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Mutton Maratha (Half/Full)",price:680,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Mutton Handi (Half/Full)",price:630,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
-  {name:"Rawas Curry",price:550,category:"Main Course",sub:"Seafood",type:"Non-Veg"},
-  {name:"Prawns Curry",price:550,category:"Main Course",sub:"Seafood",type:"Non-Veg"},
-  {name:"Pomfret Curry",price:null,category:"Main Course",sub:"Seafood",type:"Non-Veg"},
+function renderAll() {
+  renderCategories();
+  renderSubcategories();
+  renderMenu();
+  renderCart();
+}
+renderAll();
+</script>
+</body>
+</html>
 
-  // RICE
-  {name:"Steamed Rice",price:170,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Jeera Rice",price:190,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Veg Biryani",price:280,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Dum Biryani",price:290,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Paneer Biryani",price:300,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Paneer Tikka Biryani",price:320,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Veg Hyderabadi Biryani",price:290,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Ambrosia Special Veg Biryani",price:300,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Mix Veg Pulao",price:270,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Green Peas Pulao",price:250,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Kashmiri Pulao",price:290,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Veg Tawa Pulao",price:260,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Dal Khichdi",price:210,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Dal Khichdi Tadka",price:230,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Palak Khichdi",price:220,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Palak Khichdi Tadka",price:240,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Curd Rice",price:190,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Curd Rice Tadka",price:200,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
-  {name:"Chicken Dum Biryani",price:360,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
-  {name:"Chicken Tikka Biryani",price:390,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
-  {name:"Mutton Dum Biryani",price:550,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
-  {name:"Prawns Biryani",price:550,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
-  {name:"Egg Biryani",price:310,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
-  {name:"Fried Rice",price:270,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Burnt Garlic Rice",price:280,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Schezwan Fried Rice",price:280,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Combination Rice",price:280,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Chilli Garlic Rice",price:290,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Hongkong Rice",price:300,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Singapore Fried Rice",price:300,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Veg Manchurian Fried Rice",price:300,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Triple Rice",price:340,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
-  {name:"Hakka Noodles",price:250,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
-  {name:"Schezwan Noodles",price:260,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  Noodles",price:260,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
   {name:"Chilli Garlic Noodles",price:270,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
   {name:"Hot Basil Noodles",price:270,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
   {name:"Burnt Garlic Noodle",price:260,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
