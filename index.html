@@ -1,2 +1,253 @@
 # Ambrosia---restaurant-
 Ambrosia Family Restro &amp; Bar official website
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#173b2b">
+  <title>Ambrosia Family Restro & Bar</title>
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: #f8f7f2;
+      color: #222;
+    }
+    header {
+      background: #173b2b;
+      color: white;
+      padding: 22px 16px;
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 25px; }
+    header p { color: #e8d4a0; margin-bottom: 0; }
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      padding: 14px;
+      background: #fff;
+      position: sticky;
+      top: 0;
+      box-shadow: 0 2px 8px #0001;
+      z-index: 2;
+    }
+    nav a { color: #173b2b; text-decoration: none; font-weight: bold; }
+    .hero {
+      padding: 55px 20px;
+      text-align: center;
+      color: white;
+      background: linear-gradient(135deg, #173b2b, #387451);
+    }
+    .hero h2 { font-size: 32px; margin: 0 0 12px; }
+    .hero p { line-height: 1.6; }
+    .button {
+      display: inline-block;
+      background: #e8c777;
+      color: #173b2b;
+      padding: 13px 22px;
+      border-radius: 7px;
+      text-decoration: none;
+      font-weight: bold;
+      border: 0;
+      cursor: pointer;
+    }
+    section { padding: 26px 16px; max-width: 1000px; margin: auto; }
+    section h2 { color: #173b2b; }
+    .categories {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 8px 0 16px;
+    }
+    .categories button {
+      flex-shrink: 0;
+      border: 1px solid #d8dfd6;
+      background: white;
+      padding: 11px 15px;
+      border-radius: 22px;
+      cursor: pointer;
+    }
+    .categories button.active { background: #173b2b; color: white; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: white;
+      border-radius: 12px;
+      padding: 14px;
+      box-shadow: 0 3px 12px #0000000b;
+    }
+    .food-image {
+      height: 100px;
+      background: #efeee7;
+      border-radius: 8px;
+      display: grid;
+      place-items: center;
+      color: #777;
+      text-align: center;
+      font-size: 13px;
+    }
+    .card h3 { font-size: 16px; margin-bottom: 7px; }
+    .card p { font-size: 13px; color: #666; }
+    .price { font-weight: bold; color: #173b2b; margin: 12px 0; }
+    .add {
+      background: #173b2b;
+      color: white;
+      border: 0;
+      padding: 10px;
+      border-radius: 6px;
+      width: 100%;
+      cursor: pointer;
+    }
+    .cart {
+      background: white;
+      padding: 18px;
+      border-radius: 12px;
+      border: 1px solid #e4e4dc;
+    }
+    input, textarea {
+      width: 100%;
+      padding: 12px;
+      margin: 7px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font: inherit;
+    }
+    footer {
+      background: #173b2b;
+      color: white;
+      text-align: center;
+      padding: 25px 15px;
+      margin-top: 20px;
+    }
+    @media (min-width: 650px) {
+      .grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .hero h2 { font-size: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Ambrosia</h1>
+    <p>Family Restro & Bar</p>
+  </header>
+
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#cart">Cart (<span id="cart-count">0</span>)</a>
+  </nav>
+
+  <div class="hero" id="home">
+    <h2>Good Food, Great Moments</h2>
+    <p>Discover your favourites at Ambrosia Family Restro & Bar.</p>
+    <a class="button" href="#menu">Explore Menu</a>
+  </div>
+
+  <section id="menu">
+    <h2>Our Menu</h2>
+    <p>Our menu will be updated with your actual dishes and prices.</p>
+    <div class="categories" id="categories"></div>
+    <div class="grid" id="products"></div>
+  </section>
+
+  <section id="cart">
+    <h2>Your Cart</h2>
+    <div class="cart">
+      <div id="cart-items">Your cart is empty.</div>
+      <h3>Total: ₹<span id="total">0</span></h3>
+      <p>Checkout is a preview for now. Orders are not sent to the restaurant yet.</p>
+      <button class="button" onclick="alert('Online ordering is not connected yet. We will set it up next.')">Proceed to Checkout</button>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Visit Ambrosia</h2>
+    <p>Add your restaurant address, phone number and opening hours here when ready.</p>
+  </section>
+
+  <footer>
+    <strong>Ambrosia Family Restro & Bar</strong>
+    <p>Good food. Great company.</p>
+  </footer>
+
+  <script>
+    // Demo products only. Replace these with your real menu.
+    const products = [
+      { id: 1, name: "Sample Dish 1", category: "Starters", price: 0 },
+      { id: 2, name: "Sample Dish 2", category: "Main Course", price: 0 },
+      { id: 3, name: "Sample Dish 3", category: "Beverages", price: 0 }
+    ];
+
+    const categories = ["All", ...new Set(products.map(p => p.category))];
+    const cart = {};
+    let selected = "All";
+
+    function renderCategories() {
+      document.getElementById("categories").innerHTML =
+        categories.map(c => `<button class="${selected === c ? "active" : ""}" onclick="filterCategory('${c}')">${c}</button>`).join("");
+    }
+
+    function renderProducts() {
+      const visible = products.filter(p => selected === "All" || p.category === selected);
+      document.getElementById("products").innerHTML = visible.map(p => `
+        <article class="card">
+          <div class="food-image">Add your food photo later</div>
+          <h3>${p.name}</h3>
+          <p>${p.category}</p>
+          <div class="price">${p.price ? "₹" + p.price : "Price to be added"}</div>
+          <button class="add" onclick="addToCart(${p.id})">ADD +</button>
+        </article>`).join("");
+    }
+
+    function filterCategory(c) {
+      selected = c;
+      renderCategories();
+      renderProducts();
+    }
+
+    function addToCart(id) {
+      const p = products.find(item => item.id === id);
+      if (!p.price || p.price <= 0) {
+        alert("This is a demo dish. Add the real dish and price before ordering.");
+        return;
+      }
+      cart[id] = (cart[id] || 0) + 1;
+      renderCart();
+    }
+
+    function renderCart() {
+      const items = Object.entries(cart);
+      document.getElementById("cart-count").textContent =
+        items.reduce((sum, [, qty]) => sum + qty, 0);
+      document.getElementById("cart-items").innerHTML = items.length
+        ? items.map(([id, qty]) => {
+            const p = products.find(item => item.id === Number(id));
+            return `<p>${p.name} × ${qty} — ₹${p.price * qty}
+              <button onclick="changeQty(${id},-1)">−</button>
+              <button onclick="changeQty(${id},1)">+</button></p>`;
+          }).join("")
+        : "Your cart is empty.";
+      document.getElementById("total").textContent =
+        items.reduce((sum, [id, qty]) => {
+          return sum + products.find(p => p.id === Number(id)).price * qty;
+        }, 0);
+    }
+
+    function changeQty(id, amount) {
+      cart[id] = (cart[id] || 0) + amount;
+      if (cart[id] <= 0) delete cart[id];
+      renderCart();
+    }
+
+    renderCategories();
+    renderProducts();
+  </script>
+</body>
+</html>
