@@ -4,31 +4,357 @@ Ambrosia Family Restro &amp; Bar official website
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#173b2b">
-  <title>Ambrosia Family Restro & Bar</title>
-  <style>
-    * { box-sizing: border-box; }
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f8f7f2;
-      color: #222;
-    }
-    header {
-      background: #173b2b;
-      color: white;
-      padding: 22px 16px;
-      text-align: center;
-    }
-    header h1 { margin: 0; font-size: 25px; }
-    header p { color: #e8d4a0; margin-bottom: 0; }
-    nav {
-      display: flex;
-      justify-content: center;
-      gap: 22px;
-      padding: 14px;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ambrosia Family Restro & Bar</title>
+<style>
+:root {
+  --red: #9d271b;
+  --gold: #c49a55;
+  --cream: #fffaf1;
+  --dark: #27231f;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+}
+header {
+  background: var(--dark);
+  color: white;
+  padding: 22px 5%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  border-bottom: 4px solid var(--gold);
+}
+header h1 {
+  margin: 0;
+  color: #f0cf91;
+  font-family: Georgia, serif;
+}
+header p { margin: 6px 0 0; }
+header a, .whatsapp {
+  color: white;
+  background: #168b50;
+  padding: 12px 18px;
+  border-radius: 7px;
+  text-decoration: none;
+  font-weight: bold;
+}
+main { max-width: 1300px; margin: auto; padding: 24px; }
+h2 { color: var(--red); font-family: Georgia, serif; }
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 18px 0;
+}
+.filters button, .subfilters button {
+  border: 1px solid #d8c5a5;
+  background: white;
+  border-radius: 22px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-weight: 600;
+}
+.filters button.active, .subfilters button.active {
+  background: var(--red);
+  color: white;
+  border-color: var(--red);
+}
+.subfilters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 22px; }
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+.food-card {
+  background: white;
+  border: 1px solid #eadfcd;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 3px 12px #0000000b;
+}
+.food-picture {
+  height: 145px;
+  background: linear-gradient(135deg, #eee0c8, #d8c09a);
+  display: grid;
+  place-items: center;
+  font-size: 45px;
+}
+.food-info { padding: 15px; }
+.food-info h3 { margin: 0 0 8px; font-size: 17px; }
+.food-meta { color: #71675c; font-size: 13px; }
+.price { color: var(--red); font-weight: bold; font-size: 19px; }
+.add-btn {
+  border: none;
+  border-radius: 7px;
+  padding: 10px 14px;
+  background: var(--red);
+  color: white;
+  cursor: pointer;
+  font-weight: bold;
+}
+.card-bottom { display:flex; justify-content:space-between; align-items:center; gap:8px; margin-top:14px; }
+#cart {
+  background: white;
+  border: 1px solid #e2d4bd;
+  border-radius: 12px;
+  margin-top: 38px;
+  padding: 22px;
+}
+.cart-row {
+  display:flex; justify-content:space-between; align-items:center;
+  gap:12px; padding:12px 0; border-bottom:1px solid #eee;
+}
+.qty { display:flex; align-items:center; gap:10px; }
+.qty button { padding:5px 10px; cursor:pointer; }
+.cart-total { font-size:22px; font-weight:bold; color:var(--red); margin:20px 0; }
+.whatsapp { display:inline-block; border:0; cursor:pointer; font-size:16px; }
+.empty { color:#777; padding:12px 0; }
+footer { text-align:center; background:var(--dark); color:white; padding:24px; margin-top:35px; }
+
+@media (max-width: 750px) {
+  main { padding: 16px; }
+  .menu-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap:12px; }
+  .food-picture { height:110px; }
+  .food-info { padding:11px; }
+  .food-info h3 { font-size:15px; }
+  .card-bottom { align-items:flex-start; flex-direction:column; }
+}
+@media (max-width: 430px) {
+  .menu-grid { grid-template-columns: 1fr; }
+  header { padding:18px; }
+}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>AMBROSIA</h1>
+    <p>Family Restro & Bar · Good Food, Great Moments</p>
+  </div>
+  <a href="https://wa.me/916387097732" target="_blank">WhatsApp Orders</a>
+</header>
+
+<main>
+  <h2>Our Menu</h2>
+  <p>Choose a category, explore the dishes, and add your favourites to your cart.</p>
+
+  <div class="filters" id="categoryFilters"></div>
+  <div class="subfilters" id="subFilters"></div>
+  <section class="menu-grid" id="menuGrid"></section>
+
+  <section id="cart">
+    <h2>Your Cart</h2>
+    <div id="cartItems"><p class="empty">Your cart is empty. Add a dish to get started.</p></div>
+    <div class="cart-total" id="cartTotal">Total: ₹0</div>
+    <button class="whatsapp" onclick="sendOrder()">Order on WhatsApp</button>
+  </section>
+</main>
+
+<footer>
+  <p>Ambrosia Family Restro & Bar</p>
+  <p>WhatsApp: 6387097732</p>
+</footer>
+
+<script>
+// Menu prices are in ₹. Add or edit items here.
+// "Veg" and "Non-Veg" filters are available within applicable categories.
+const menu = [
+  // SOUP
+  {name:"Cream of Veg Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Cream of Tomato Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Cream of Palak Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Cream of Mushroom Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Cream of Chicken Soup",price:180,category:"Starters",sub:"Soup",type:"Non-Veg"},
+  {name:"Manchow Soup",price:160,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Hot & Sour Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Veg Clear Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Sweet Corn Veg Soup",price:180,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Tom Yum Soup",price:220,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Burnt Garlic Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Lemon Coriander Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Veg Tom Kha Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Pepper Lemon Soup",price:170,category:"Starters",sub:"Soup",type:"Veg"},
+  {name:"Lung Fung Soup",price:230,category:"Starters",sub:"Soup",type:"Non-Veg"},
+
+  // VEG BAR BITES & CHINESE STARTERS
+  {name:"Chana Garlic Koliwada",price:210,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"Chana Garlic Fry",price:180,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"Cheese Cherry Pineapple",price:220,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"Cheese Pakoda",price:180,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"Paneer Pakoda",price:250,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"Mix Veg Pakoda",price:200,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"Onion Ring Pakoda",price:175,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"Cheese Corn Ball",price:280,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"French Fries",price:180,category:"Starters",sub:"Veg Starters",type:"Veg"},
+  {name:"Spring Roll",price:260,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Dragon Roll",price:280,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Manchurian",price:280,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Corn Crispy",price:260,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Veg Crispy",price:270,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Kung Pao",price:310,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Chilli",price:280,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Mongolian",price:330,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Hot Garlic",price:300,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Burnt Chilli",price:290,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Salt & Pepper",price:280,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Barbeque",price:290,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Hot Pan (Saute)",price:290,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Schezwan Dry",price:300,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+  {name:"Andres Chilly",price:290,category:"Starters",sub:"Chinese Starter",type:"Veg"},
+
+  // NON-VEG STARTERS
+  {name:"Shredded Chicken Koliwada",price:310,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Chicken Pakoda",price:310,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Butter Garlic Chicken",price:380,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Rawas Fish Finger",price:530,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Basa Fish Finger",price:490,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Pomfret Fish Finger",price:null,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Butter Garlic Prawns",price:550,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Egg Pakoda",price:180,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Egg Bhurji",price:210,category:"Starters",sub:"Non-Veg Starters",type:"Non-Veg"},
+  {name:"Chicken Tikka",price:370,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Chicken Nawabi Tikka",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Chicken Lasooni Tikka",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Chicken Malai Tikka",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Bangra Kebab",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Chicken Achari Tikka",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Pahadi Tikka",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Reshmi Kebab",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Kalimi Kebab",price:380,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Afghani Kebab",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Lazeez Kebab",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Angara Kebab",price:390,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Martha Kebab",price:410,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Arabi Tandoori (Half/Full)",price:550,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Chicken Tandoori (Half/Full)",price:540,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Chicken Seekh Kebab",price:410,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+  {name:"Tandoori Prawns",price:550,category:"Starters",sub:"Tandoor",type:"Non-Veg"},
+
+  // INDIAN VEG MAIN COURSE
+  {name:"Aloo Capsicum",price:280,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Aloo Jeera",price:280,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Aloo Methi",price:280,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Ambrosia Spl. Veg",price:300,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Ambrosia Spl. Paneer Rajwadi",price:400,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Tikka Masala",price:400,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Bhurji",price:310,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Angara",price:320,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Lababdar",price:320,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Makhanwala",price:330,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Pasanda",price:320,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Tawa Masala",price:300,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Achari Tikka",price:330,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Paneer Malai Tikka",price:350,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Mushroom Masala",price:290,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Mushroom Tikka Masala",price:300,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Veg Kolhapuri",price:275,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Veg Makhanwala",price:290,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Veg Handi",price:290,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Veg Jaipuri",price:345,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Veg Kadai",price:290,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Veg Kofta",price:280,category:"Main Course",sub:"Veg Main Course",type:"Veg"},
+  {name:"Dal Fry",price:190,category:"Main Course",sub:"Dal",type:"Veg"},
+  {name:"Dal Tadka",price:210,category:"Main Course",sub:"Dal",type:"Veg"},
+  {name:"Dal Palak",price:200,category:"Main Course",sub:"Dal",type:"Veg"},
+  {name:"Dal Makhani",price:230,category:"Main Course",sub:"Dal",type:"Veg"},
+  {name:"Kadi Pakoda",price:250,category:"Main Course",sub:"Dal",type:"Veg"},
+  {name:"Dal Maharani",price:250,category:"Main Course",sub:"Dal",type:"Veg"},
+  {name:"Gujarati Kadi",price:250,category:"Main Course",sub:"Dal",type:"Veg"},
+  {name:"Ambrosia Special Dal Tadka",price:260,category:"Main Course",sub:"Dal",type:"Veg"},
+
+  // NON-VEG MAIN COURSE
+  {name:"Murg Kadai",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Chicken Tikka Masala",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Methi Chicken",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Murg Hari Mirch",price:380,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Murg Saguwala",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Chicken Kolhapuri",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Murg Patiala",price:390,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Sukha Chicken",price:450,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Tawa Kheema",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Murg Rahra Masala",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Chicken Bhuna Masala",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Chicken Lapeta",price:430,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Murg Maratha",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Murg Handi",price:480,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Murg Makhaniwala",price:410,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Murg Mussalam (Half/Full)",price:550,category:"Main Course",sub:"Chicken",type:"Non-Veg"},
+  {name:"Mutton Kadhai",price:530,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Mutton Hari Mirch",price:530,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Sukha Mutton",price:580,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Tawa Kheema",price:550,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Mutton Rahra Masala",price:550,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Mutton Rogan Josh",price:550,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Bhuna Mutton",price:550,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Mutton Maratha (Half/Full)",price:680,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Mutton Handi (Half/Full)",price:630,category:"Main Course",sub:"Mutton",type:"Non-Veg"},
+  {name:"Rawas Curry",price:550,category:"Main Course",sub:"Seafood",type:"Non-Veg"},
+  {name:"Prawns Curry",price:550,category:"Main Course",sub:"Seafood",type:"Non-Veg"},
+  {name:"Pomfret Curry",price:null,category:"Main Course",sub:"Seafood",type:"Non-Veg"},
+
+  // RICE
+  {name:"Steamed Rice",price:170,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Jeera Rice",price:190,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Veg Biryani",price:280,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Dum Biryani",price:290,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Paneer Biryani",price:300,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Paneer Tikka Biryani",price:320,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Veg Hyderabadi Biryani",price:290,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Ambrosia Special Veg Biryani",price:300,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Mix Veg Pulao",price:270,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Green Peas Pulao",price:250,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Kashmiri Pulao",price:290,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Veg Tawa Pulao",price:260,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Dal Khichdi",price:210,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Dal Khichdi Tadka",price:230,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Palak Khichdi",price:220,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Palak Khichdi Tadka",price:240,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Curd Rice",price:190,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Curd Rice Tadka",price:200,category:"Rice & Noodles",sub:"Rice",type:"Veg"},
+  {name:"Chicken Dum Biryani",price:360,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
+  {name:"Chicken Tikka Biryani",price:390,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
+  {name:"Mutton Dum Biryani",price:550,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
+  {name:"Prawns Biryani",price:550,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
+  {name:"Egg Biryani",price:310,category:"Rice & Noodles",sub:"Rice",type:"Non-Veg"},
+  {name:"Fried Rice",price:270,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Burnt Garlic Rice",price:280,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Schezwan Fried Rice",price:280,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Combination Rice",price:280,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Chilli Garlic Rice",price:290,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Hongkong Rice",price:300,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Singapore Fried Rice",price:300,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Veg Manchurian Fried Rice",price:300,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Triple Rice",price:340,category:"Rice & Noodles",sub:"Chinese Rice",type:"Veg"},
+  {name:"Hakka Noodles",price:250,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Schezwan Noodles",price:260,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Chilli Garlic Noodles",price:270,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Hot Basil Noodles",price:270,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Burnt Garlic Noodle",price:260,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Chowmein",price:320,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Hongkong Noodles",price:300,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Singapore Noodles",price:300,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Veg Manchurian Noodles",price:300,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"American Chopsuey",price:300,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+  {name:"Chinese Chopsuey",price:310,category:"Rice & Noodles",sub:"Noodles",type:"Veg"},
+
+  // DAL / SALAD / ACCOMPANIMENTS
+  {name:"Fresh Garden Salad",price:110,category:"Sides",sub:"Salad",type:"Veg"},
+  {name:"Russian Salad",price:175,category:"Sides",sub:"Salad",type:"Veg"},
+  {name:"Kimchi Salad",price:195,category:"Sides",sub:"Salad",type:"Veg"},
+  {name:"Aloo Chaat",price:150,category:"Sides",sub:"Salad",type:"Veg"},
+  {name:"Chana Chaat",price:150,category:"Sides",sub:"Salad",type:"Veg"},
+  {name:"Tossed Salad",price:160,category:"Sides",sub:"Salad",type:"Veg"},
+  {name:"Papad (Roasted/Fried)",price:35,category:"Sides",sub:"Accompaniments",type:"Veg"},
+  {name:"Masala Papad",price:60,category:"Sides",sub:"Accompaniments",type:"Veg"},
+  {nam;
       background: #fff;
       position: sticky;
       top: 0;
