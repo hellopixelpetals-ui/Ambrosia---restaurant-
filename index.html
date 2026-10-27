@@ -76,20 +76,140 @@ footer{background:var(--green);color:#eee3c9;text-align:center;padding:24px;font
   .details{grid-template-columns:1fr}
   header{align-items:flex-start;flex-direction:column}
 }
-@media(max-width:480px){
-  main{padding:24px 12px}
-  .menu-grid{gap:10px}
-  .food-card img{height:125px}
-  .food-info{padding:10px}
-  .food-top{flex-direction:column;gap:6px}
-  .food-top h3{font-size:15px}
-  .food-info p{font-size:12px;min-height:48px}
-  .add{font-size:12px;padding:8px}
-  .badge{font-size:9px}
-  .fields{grid-template-columns:1fr}
-  .cart-row{gap:8px;grid-template-columns:1fr auto}
-  .remove{grid-column:1/-1;text-align:left}
+
+/* Responsive layout for mobile screens */
+@media screen and (max-width: 480px) {
+
+  /* Main content */
+  main {
+    padding: 24px 12px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  /* Food menu grid */
+  .menu-grid {
+    gap: 10px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* Food images */
+  .food-card img {
+    width: 100%;
+    height: 125px;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Food card information */
+  .food-info {
+    padding: 10px;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  .food-top {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+
+  .food-top h3 {
+    font-size: 15px;
+    line-height: 1.4;
+    margin: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .food-info p {
+    font-size: 12px;
+    line-height: 1.5;
+    min-height: 48px;
+    margin: 6px 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* Add-to-cart button */
+  .add {
+    width: 100%;
+    font-size: 12px;
+    padding: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  /* Food badges */
+  .badge {
+    font-size: 9px;
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  /* Form fields */
+  .fields {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
+  }
+
+  .fields input,
+  .fields select,
+  .fields textarea {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* Shopping cart rows */
+  .cart-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .cart-row > * {
+    min-width: 0;
+  }
+
+  /* Remove item button */
+  .remove {
+    grid-column: 1 / -1;
+    text-align: left;
+    justify-self: start;
+  }
+
 }
+
+/* Extra-small phones */
+@media screen and (max-width: 360px) {
+
+  main {
+    padding: 18px 8px;
+  }
+
+  .menu-grid {
+    gap: 8px;
+  }
+
+  .food-card img {
+    height: 105px;
+  }
+
+  .food-info {
+    padding: 8px;
+  }
+
+  .food-top h3 {
+    font-size: 14px;
+  }
+
+  .food-info p {
+    font-size: 11px;
+  }
+
+}
+
 </style>
 </head>
 <body>
